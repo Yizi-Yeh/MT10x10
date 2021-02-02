@@ -1,0 +1,212 @@
+<template>
+<div>
+    <Navbar/>
+    <Carousel/>
+    <!-- 近期活動 -->
+        <transition name="slide-left"></transition>
+        <section id="section03">
+        <div class="container">
+        <h1 class="mb-5">近期活動</h1>
+        <div class="row h-100">
+        <div id="newplani" class="swiper-slide col-lg-4 d-flex" v-for="(item) in newplanswiper" :key="item._id" >
+          <a href="#"  @click.prevent="getNewPlan(item._id)">
+        <div class="view mb-3 rounded">
+            <img style="height:300px; width:360px;background-size:cover; background-position:center" :src="item.p_id.images[0].imgUrl">
+              <div class="text">     
+            <h5 class="text-center">{{ item.p_id.title }}</h5>
+            <h5 class="text-center">活動日期：{{ item.date }}</h5>
+             <h5 class="text-center">分類：{{ item.p_id.category }}</h5>
+            <div  class="text-center">NT{{ item.price | commaFormat | dollarSign }} </div>
+               </div>
+             </div>
+          </a>
+        </div>
+    </div>
+ </div>
+    </section>
+</transition>
+    <!-- sub-banner -->
+   <div class="full-container sub-banner">
+      <div class="container">
+        <h2 class="banner-title mt-2">Welcome to join MT10x10 and follow us!</h2>
+        <div class="banner-sub-title mt-3">That is the spectacular scenery in Taiwan we want to share with you.</div>
+      </div>
+    </div>
+
+
+
+<div class="lr padding-lr">
+      <h5 class="title_mt">MT10x10登山社<br><span>HIKING CLUB</span></h5>
+      <h4 class="sub-mt txtCenter">展現渴望自由的你<br>Show your craving for freedom.</h4>
+      <div class="col-8 mx-auto">
+      <span class="sub-txt txtCenter">MT10x10（山來水去企業社）<br>
+        象徵著台灣最具代表性的一百座山岳，也表達我們對台灣山林的敬愛之情。<br class="hp_brPc">我們是由熱血的年輕人所創建的登山社，
+        <br class="hp_brPc">用10分熱情與10分愛山林的心，和山友們一步步一同完成百岳，<br>帶領更多人瞭解台灣的美。 <br><br>然而，一提到日本就想到莊嚴的富士山；<br class="hp_brPc">尼泊爾有崇高的聖母峰；瑞士有秀麗的阿爾卑斯山；<br>我們希望拓展台灣山域風景知名度，讓世界一提到台灣就想到有壯闊的玉山。<br><br>MT10x10登山社（山來水去企業社）歡迎您</span>
+   </div>
+    </div>
+    <br>
+    <!-- 精選行程 -->ç
+      <section id="section03">
+        <div class="container mb-5">
+        <h1 titleclass="mt-5">精選行程</h1>
+        <div class="row h-100">
+           <swiper :options="swiperOption">
+          <swiper-slide
+         class="col-lg-4 d-flex"  v-for="r in recommends" :key="r.id" >
+          <a href="#"  @click.prevent="getProduct(r._id)">
+        <div class="view mb-3 rounded">
+            <img style="height:250px;background-size:cover; background-position:center" :src="r.images[0].imgUrl">
+              <div class="text">     
+            <span class="text-center">{{ r.title }}</span>
+              <span class="text-center">分類：{{ r.category }}</span>
+            <div  class="text-center">NT{{ r.cost | commaFormat | dollarSign }} </div>
+                </div>
+              </div>
+          </a> 
+         </swiper-slide>
+<div class="swiper-pagination" slot="pagination"></div> 
+           </swiper>
+    </div>
+  </div>
+    </section>
+</div>
+</template>
+
+<script>
+import Navbar from '../components/Navbar'
+import Carousel from '../components/Carousel'
+import Plans from '../components/pages/plan'
+import store from '@/store'
+import Axios from 'axios'
+import 'swiper/swiper-bundle.css' // require styles
+import { swiper, swiperSlide } from "vue-awesome-swiper";
+
+
+export default {
+  data() {
+    return {
+      swiperOption: {
+        slidesPerView: 3,
+        spaceBetween: 5,
+        speed: 600, 
+        autoplay:{
+          delay: 2000,
+        },
+        pagination: {
+          
+          el: '.swiper-pagination',
+          clickable: true
+        },
+        breakpoints: {
+          480: {
+            slidesPerView: 1,
+            spaceBetween: 20
+          },
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 30
+          },
+          800: {
+            slidesPerView: 3,
+            spaceBetween: 30
+          }
+        }
+      },
+    }
+  },
+  name: 'home',
+    components: {
+    swiper,
+    swiperSlide,
+    Navbar,
+    Carousel,
+    Plans,
+  },
+  computed:{
+    user () {
+      return store.state.user
+    },
+    products(){
+      return store.state.products
+    },
+    newplanswiper(){
+      return store.state.newplans
+    },
+    recommends () {
+      const products = [...this.products]
+      return products.sort(() => Math.random() - 0.5).splice(0, 7)
+    },
+    
+  },
+  methods: {
+    getProduct(id) {
+      const api = `${process.env.VUE_APP_API}`+ '/products/'  
+        const vm = this;
+        Axios.get(api).then((response) => {
+        vm.plan = response.data.result
+        if(response.data.success){
+        vm.$router.push('itemPlan/'+id)
+
+          }         
+        })
+    },
+        getNewPlans() {
+        const api = `${process.env.VUE_APP_API}`+ '/newplans'
+        const vm = this;
+        Axios.get(api).then((response) => {
+        // console.log(response.data)
+        vm.newplans = response.data.result
+        console.log(vm.newplans)
+        })
+        },
+        getNewPlan(id) {
+        const api = `${process.env.VUE_APP_API}`+ '/newplans/' + id
+        const vm = this;
+        Axios.get(api).then((response) => {
+        vm.newplans = response.data.result
+        if(response.data.success){
+            console.log(response.data)
+            vm.$router.push('newplan/'+`${id}`)
+          }        
+        })
+        },
+  },
+mounted () {
+    // this.getAllPlans()
+    store.dispatch('getProductsInfo')
+    store.dispatch('getNewPlansInfo')
+    // this.getProduct();
+    this.getNewPlans()  
+  },
+  
+}
+</script>
+
+<style scoped>
+.swiper-container {
+  max-width: 1080px;
+  width: 100%;
+  height: 340px;
+  padding-bottom: 20px;
+}
+.swiper-slide{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  padding: 5px 15px;
+  box-sizing: border-box;
+  .intro{
+    align-self: flex-start;
+    font-weight: 400;
+    color: #666;
+    font-size: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  }
+.swiper-pagination{
+  bottom: 0px;
+}
+</style>

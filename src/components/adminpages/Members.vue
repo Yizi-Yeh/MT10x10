@@ -1,0 +1,61 @@
+<template>
+<div>
+<div class="text-right mt-4">
+      <button class="btn btn-dark d-none"  data-toggle="modal" data-target="#productModal" @click="openModal(true)">建立新的行程</button>
+    </div>
+    <table class="table mt-4">
+      <thead>
+        <tr class="text-center">
+          <th width="200">會員帳號</th>
+          <th width="200">刪除</th>
+        </tr>
+      </thead>
+      <tbody  class="text-center">
+        <tr v-for="item in users" :key="item._id">
+          <td>{{ item.account }}</td>
+          <td>
+        <button @click="delProducts(item._id)"  class="btn btn-outline-danger btn-sm">刪除</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+</template>
+<script>
+import Axios from 'axios'
+export default {
+    data() {
+        return {
+            users:[],
+            plansId:[],
+            form:{},
+            isNew: false,
+        }
+    },
+    methods: {
+        getUsers() {
+        const api = `${process.env.VUE_APP_API}`+ '/users'
+        Axios.get(api).then((response) => {
+        this.users = response.data.result
+        console.log(response.data.result)
+        })
+        },
+
+        delProducts(id) {
+        const api = `${process.env.VUE_APP_API}`+ '/users/logout/'
+        Axios.delete(api).then((response) => {
+          const index = this.users.findIndex( item => {
+          return item._id === id 
+          }) 
+          this.users.splice(index,1)
+          })
+        .catch(error => {
+          alert(error.response.data.message)
+        }) 
+        },    
+    },
+    created() {
+        this.getUsers()
+    }
+}
+</script>
