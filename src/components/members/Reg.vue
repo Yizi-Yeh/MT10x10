@@ -15,7 +15,7 @@
   <input type="password" id="inputPassword" class="form-control" placeholder="Password" v-model="password" :state="passwordState" required>
   <div class="checkbox mb-3">
   </div>
-  <button class="btn btn-lg btn-dark btn-block" type="submit" @click="regSubmit">Signin</button>
+  <button class="btn btn-lg btn-dark btn-block" type="submit" @click="regSubmit">Submit</button>
   <button class="btn btn-lg btn-dark btn-block" type="reset" @reset="onReset"> Reset</button>
   <div class="row">
     <div class="col-12 mt-4 mr-0">
