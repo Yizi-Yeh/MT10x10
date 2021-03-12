@@ -43,6 +43,7 @@ export const uploadProduct = async (req, res) => {
       costinclude: reqq.body.costinclude,
       attention: reqq.body.attention,
       is_enabled: reqq.body.is_enabled,
+      noteForJoin: reqq.body.noteForJoin,
       images: [images],
       schedule: [schedule],
       meal: [meal]
@@ -144,5 +145,70 @@ export const searchProductById = async (req, res) => {
       res.status(400).send({ success: false, message: 'ID 格式錯誤' })
       console.log(error)
     }
+  }
+}
+
+
+export const createSchedules = async (req, res) => {
+  try {
+    const result = await products.findByIdAndUpdate(req.params.id,
+      {
+        $push: {
+          schedule: {
+            dateTime: req.body.dateTime,
+            content: req.body.content
+          }
+        }
+      },
+      { new: true }
+    )
+    res.status(200).send({ success: true, message: '已新增行程安排', result })
+    console.log(result)
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+    console.log(error)
+  }
+}
+
+export const createImgs = async (req, res) => {
+  try {
+    const result = await products.findByIdAndUpdate(req.params.id,
+      {
+        $push: {
+          images: {
+            description: reqq.body.description,
+            file,
+            imgUrl: reqq.body.imgUrl
+          }
+        }
+      },
+      { new: true }
+    )
+    res.status(200).send({ success: true, message: '已新增行程照片', result })
+    console.log(result)
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+    console.log(error)
+  }
+}
+
+export const createMeals = async (req, res) => {
+  try {
+    const result = await products.findByIdAndUpdate(req.params.id,
+      {
+        $push: {
+          meal: {
+            mealdateTime: req.body.mealdateTime,
+            mealcontent: req.body.mealcontent
+          }
+        }
+      },
+      { new: true }
+    )
+    res.status(200).send({ success: true, message: '已新增餐食安排', result })
+    console.log(result)
+  } catch (error) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+    console.log(error)
   }
 }
