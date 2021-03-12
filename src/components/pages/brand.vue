@@ -11,11 +11,10 @@
        </div>
   </div>
        <video-background 
-    src="../intro.mp4"
-
+    src="public/intro.mp4"
     :sources="[
-        {src: '../intro.mp4', res: 900, autoplay: true}, 
-        {src: '../intro.mp4', res: 638, autoplay: true}
+        {src: 'public/intro.mp4', res: 900, autoplay: true}, 
+        {src: 'public/intro.mp4', res: 638, autoplay: true}
     ]"
     style="max-height: 700px; height: 100vh;"
     overlay="linear-gradient(45deg,#2a4ae430,#fb949e6b)" 
