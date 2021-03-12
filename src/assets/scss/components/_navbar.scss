@@ -1,0 +1,101 @@
+.row {
+  position: relative;
+  margin: 0;
+  @include flex(column, center, center);
+}
+.navbar {
+  @include flex(column, center, center);
+}
+
+.nav-log {
+  margin: 0;
+  position: absolute;
+  @include flex(row, center, center);
+  top: 0;
+  right: -10%;
+  @include media-breakpoint-up(md) {
+    top: 0;
+    right: -60%;
+  }
+  @include media-breakpoint-up(lg) {
+    top: 0;
+    right: -88%;
+  }
+}
+
+.nav-log a {
+  // 上下 左右
+  color: $color-text-secondary;
+  padding: 12px 3px;
+  @include media-breakpoint-up(md) {
+    color: $color-text-secondary;
+    padding: 12px 8px;
+  }
+  @include media-breakpoint-up(lg) {
+    color: $color-text-secondary;
+    padding: 12px 8px;
+  }
+}
+.nav-log a:hover {
+  color: $color-info;
+  transition: 1s;
+  transition-property: all;
+  transition-duration: 1s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+}
+.fa-user,
+.fa-sign-out-alt {
+  font-size: $heading-font-xs;
+  @include media-breakpoint-up(md) {
+    font-size: $heading-font-md;
+  }
+  @include media-breakpoint-up(lg) {
+    font-size: $heading-font-lg;
+  }
+}
+
+.navbar-nav {
+  width: 100%;
+  font-size: larger;
+  @include flex(column, center, center);
+}
+
+.nav-item {
+  margin: 10px;
+}
+
+.nav-link {
+  @include flex(row, center, center);
+  display: inline;
+  font-size: $text-font-xs;
+  letter-spacing: $letter-spacing-xs;
+  color: $color-text-secondary;
+  @include media-breakpoint-up(md) {
+    font-size: $heading-font-xs;
+  }
+  @include media-breakpoint-up(lg) {
+    color: $color-text-secondary;
+    font-size: $heading-font-xs;
+  }
+}
+.nav-link:hover {
+  color: $color-info;
+  transition: 1s;
+  transition-property: all;
+  transition-duration: 1s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+}
+
+.scrollTop {
+  background-color: $color-info;
+  position: fixed;
+  opacity: 0.8;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  height: 10%;
+  transition: 0.3s ease-in-out;
+  flex-direction: row !important;
+}

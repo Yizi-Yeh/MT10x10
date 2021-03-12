@@ -16,6 +16,21 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import swiper, { Navigation, Pagination, Autoplay } from 'swiper'
 import 'swiper/swiper-bundle.css'
 import Introswiper from './components/pages/swiper'
+import './assets/scss/main.scss';
+import VueAnimateOnScroll from 'vue-animate-onscroll'
+import VideoBackground from 'vue-responsive-video-background-player'
+import { gsap } from "gsap";
+import { PixiPlugin } from "gsap/PixiPlugin.js";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin.js";
+
+
+//without this line, PixiPlugin and MotionPathPlugin may get dropped by your bundler (tree shaking)...
+gsap.registerPlugin(PixiPlugin, MotionPathPlugin);
+
+
+
+
+
 
 
 Vue.config.productionTip = false
@@ -29,6 +44,9 @@ Vue.use(VueI18n);
 Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 Vue.component('Introswiper', Introswiper)
 swiper.use([Navigation, Pagination, Autoplay])
+Vue.use(VueAnimateOnScroll)
+Vue.component('video-background', VideoBackground);
+
 
 Object.keys(rules).forEach((rule) => {
   extend(rule, rules[rule]);

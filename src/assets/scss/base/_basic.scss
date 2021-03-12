@@ -1,0 +1,51 @@
+body,
+html {
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3",
+    "Hiragino Mincho ProN", "Sawarabi Mincho", "HG明朝E", "ＭＳ Ｐ明朝",
+    "ＭＳ 明朝", serif !important;
+  letter-spacing: 0.1 rem;
+}
+
+#section01 {
+  @include media-breakpoint-up(lg) {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+#section02 {
+  width: 100vw;
+  height: 100vh;
+  @include media-breakpoint-up(lg) {
+    margin-top: -10%;
+    height: 5vh;
+  }
+}
+
+#section02 {
+  margin-bottom: 130%;
+  @include media-breakpoint-up(lg) {
+    margin-bottom: 50%;
+  }
+}
+#section03 {
+  width: 100vw;
+  height: 70vh;
+  @include media-breakpoint-up(lg) {
+    height: 80vh;
+  }
+}
+#section04 {
+  width: 100vw;
+  height: 90vh;
+  @include media-breakpoint-up(md) {
+    height: 60vh;
+  }
+  @include media-breakpoint-up(lg) {
+    height: 80vh;
+  }
+}
+#section05 {
+  width: 100vw;
+  height: 50vh;
+}

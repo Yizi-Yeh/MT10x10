@@ -2,14 +2,17 @@
    <div>
      <Navbar/>
      <div class="container-fluid">
-       <div class="row">
+       <div class="row admin-main">
+         <div class="col-2">
          <Sidebar></Sidebar>
-         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+         </div>
+         <main class="mr-3 filter-container col-md-9 ml-auto col-lg-10 ">
            <router-view></router-view>
          </main>
        </div>
      </div>
    </div>
+
 </template>
 
 
@@ -26,3 +29,12 @@ components: {
 }
 
 </script>
+<style lang="scss" scoped>
+.admin-main{
+ flex-direction: row !important;
+ align-items: start;
+}
+main{
+  width: 200%;
+}
+</style>

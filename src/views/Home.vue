@@ -1,86 +1,104 @@
 <template>
 <div>
     <Navbar/>
-    <Carousel/>
-    <!-- 近期活動 -->
-        <transition name="slide-left"></transition>
-        <section id="section03">
-        <div class="container">
-        <h1 class="mb-5">近期活動</h1>
-        <div class="row h-100">
-        <div id="newplani" class="swiper-slide col-lg-4 d-flex" v-for="(item) in newplanswiper" :key="item._id" >
-          <a href="#"  @click.prevent="getNewPlan(item._id)">
-        <div class="view mb-3 rounded">
-            <img style="height:300px; width:360px;background-size:cover; background-position:center" :src="item.p_id.images[0].imgUrl">
-              <div class="text">     
-            <h5 class="text-center">{{ item.p_id.title }}</h5>
-            <h5 class="text-center">活動日期：{{ item.date }}</h5>
-             <h5 class="text-center">分類：{{ item.p_id.category }}</h5>
-            <div  class="text-center">NT{{ item.price | commaFormat | dollarSign }} </div>
+      <Carousel/>
+      
+        <!-- 近期開團 -->
+        <section id="section02">
+          <div class="container">
+           <p class="act-title mx-auto">近期開團</p>
+              <div class="row h-100 d-flex flex-lg-row">
+              <div  data-bottom-top="transform: translateY(-100px); opacity: 0" data-center="transform: translateY(0px); opacity: 1" class="swiper-slide col-lg-4 col-md-10 col-sm-12 d-flex flex-lg-row" v-for="(item) in newplanswipersort" :key="item._id" >
+            <a href="#"  @click.prevent="getNewPlan(item._id)">      
+              <div class="mb-1 rounded ">
+            <img  class="act-img  rounded" :src="item.p_id.images[0].imgUrl">
+              <div class="text mt-2">
+                <p class="list_category"></p>   
+            <h5 class="act-text">{{ item.p_id.title }}</h5>
+            <h5 class="act-text">活動日期：{{ item.date }}</h5>
+             <p class="act-text-category rounded">分類：{{ item.p_id.category }}</p>
+            <!-- <h5  class="act-text">NT{{ item.price | commaFormat | dollarSign }} </h5> -->
                </div>
              </div>
           </a>
         </div>
     </div>
  </div>
+           <div class="btn-wrap">
+              <a class="btn-view btn-outline-info rounded btn-sm">
+               <router-link  to="/newplan">查看更多</router-link></a>
+          </div>
     </section>
-</transition>
-    <!-- sub-banner -->
-   <div class="full-container sub-banner">
+
+    <section id="section03" >
+   <div class="container-full  container-banner">
       <div class="container">
-        <h2 class="banner-title mt-2">Welcome to join MT10x10 and follow us!</h2>
-        <div class="banner-sub-title mt-3">That is the spectacular scenery in Taiwan we want to share with you.</div>
+        <h2 class="container-banner-title">Welcome to join MT10x10 and<br> follow us!</h2>
+        <div class="container-banner-sub-title">|登山⛰|露營⛺️|健行🥾|戶外探索🗻｜</div>
       </div>
     </div>
+    </section>
 
 
-
-<div class="lr padding-lr">
-      <h5 class="title_mt">MT10x10登山社<br><span>HIKING CLUB</span></h5>
-      <h4 class="sub-mt txtCenter">展現渴望自由的你<br>Show your craving for freedom.</h4>
-      <div class="col-8 mx-auto">
-      <span class="sub-txt txtCenter">MT10x10（山來水去企業社）<br>
-        象徵著台灣最具代表性的一百座山岳，也表達我們對台灣山林的敬愛之情。<br class="hp_brPc">我們是由熱血的年輕人所創建的登山社，
-        <br class="hp_brPc">用10分熱情與10分愛山林的心，和山友們一步步一同完成百岳，<br>帶領更多人瞭解台灣的美。 <br><br>然而，一提到日本就想到莊嚴的富士山；<br class="hp_brPc">尼泊爾有崇高的聖母峰；瑞士有秀麗的阿爾卑斯山；<br>我們希望拓展台灣山域風景知名度，讓世界一提到台灣就想到有壯闊的玉山。<br><br>MT10x10登山社（山來水去企業社）歡迎您</span>
+  <section id="section04">
+    <div v-animate-onscroll="{down: 'animated zoomIn 5s', up: 'animated zoomIn 5s' }">
+    <div class="container-intro">
+        <h5 class="container-intro-title">MT10x10登山社<br><span class="container-intro-subtitle">HIKING CLUB</span></h5>
+    <div class="col-12 col-md-10 mx-auto">
+       <span class="container-intro-sub-txt">MT10x10（山來水去企業社）<br>
+        象徵著台灣最具代表性的一百座山岳，也表達我們對台灣山林的敬愛之情。<br>我們是由熱血的年輕人所創建的登山社，
+        <br class="container-intro-sub-txt">用10分熱情與10分愛山林的心，和山友們一步步一同完成百岳，<br>帶領更多人瞭解台灣的美。 <br><br>然而，一提到日本就想到莊嚴的富士山；<br>尼泊爾有崇高的聖母峰；瑞士有秀麗的阿爾卑斯山；<br>我們希望拓展台灣山域風景知名度，讓世界一提到台灣就想到有壯闊的玉山。<br><br>MT10x10登山社（山來水去企業社）歡迎您</span>
    </div>
     </div>
+    </div>
+               <div class="btn-wrap">
+              <a class="btn-view btn-outline-info rounded btn-sm">
+               <router-link to="/brand">關於MT</router-link></a>
+          </div>
+  </section>
     <br>
-    <!-- 精選行程 -->ç
-      <section id="section03">
-        <div class="container mb-5">
-        <h1 titleclass="mt-5">精選行程</h1>
-        <div class="row h-100">
+
+
+      <section id="section05">
+        <div class="container">
+       <h1 class="act-title mx-auto">活動相片</h1>
+        <div class="row h-100 rounded">
            <swiper :options="swiperOption">
           <swiper-slide
-         class="col-lg-4 d-flex"  v-for="r in recommends" :key="r.id" >
+         class="col-lg-4 col-md-6  d-flex"  v-for="r in recommends" :key="r.id" >
           <a href="#"  @click.prevent="getProduct(r._id)">
-        <div class="view mb-3 rounded">
-            <img style="height:250px;background-size:cover; background-position:center" :src="r.images[0].imgUrl">
+        <div class="act-img">
+            <img class="rounded" style="height:250px;background-size:cover; background-position:center" :src="r.images[0].imgUrl">
               <div class="text">     
-            <span class="text-center">{{ r.title }}</span>
-              <span class="text-center">分類：{{ r.category }}</span>
-            <div  class="text-center">NT{{ r.cost | commaFormat | dollarSign }} </div>
+            <h2 class="act-text-bt mt-3 mb-5">{{ r.title }}</h2>
+              <!-- <span class="act-text">分類：{{ r.category }}</span>
+            <div  class="act-text">NT{{ r.cost | commaFormat | dollarSign }} </div> -->
                 </div>
               </div>
           </a> 
          </swiper-slide>
-<div class="swiper-pagination" slot="pagination"></div> 
+        <div class="swiper-pagination " slot="pagination"></div> 
            </swiper>
-    </div>
-  </div>
+         </div>
+         </div>
     </section>
+<Footer/>
+
 </div>
 </template>
 
 <script>
 import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 import Carousel from '../components/Carousel'
 import Plans from '../components/pages/plan'
 import store from '@/store'
 import Axios from 'axios'
 import 'swiper/swiper-bundle.css' // require styles
 import { swiper, swiperSlide } from "vue-awesome-swiper";
-
+require(['skrollr'], function(skrollr){
+    const s = skrollr.init();
+});
 
 export default {
   data() {
@@ -93,20 +111,19 @@ export default {
           delay: 2000,
         },
         pagination: {
-          
           el: '.swiper-pagination',
           clickable: true
         },
         breakpoints: {
-          480: {
+          576: {
             slidesPerView: 1,
             spaceBetween: 20
           },
-          640: {
+          768: {
             slidesPerView: 2,
-            spaceBetween: 30
+            spaceBetween:10
           },
-          800: {
+          992: {
             slidesPerView: 3,
             spaceBetween: 30
           }
@@ -119,6 +136,7 @@ export default {
     swiper,
     swiperSlide,
     Navbar,
+    Footer,
     Carousel,
     Plans,
   },
@@ -132,9 +150,13 @@ export default {
     newplanswiper(){
       return store.state.newplans
     },
+    newplanswipersort(){
+     const newplan = [...this.newplanswiper]
+      return newplan.slice(0,3)
+    },
     recommends () {
       const products = [...this.products]
-      return products.sort(() => Math.random() - 0.5).splice(0, 7)
+      return products.sort(() => Math.random() - 0.5).splice(0,8)
     },
     
   },
@@ -182,31 +204,3 @@ mounted () {
 }
 </script>
 
-<style scoped>
-.swiper-container {
-  max-width: 1080px;
-  width: 100%;
-  height: 340px;
-  padding-bottom: 20px;
-}
-.swiper-slide{
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-direction: column;
-  padding: 5px 15px;
-  box-sizing: border-box;
-  .intro{
-    align-self: flex-start;
-    font-weight: 400;
-    color: #666;
-    font-size: 14px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ccc;
-  }
-  }
-.swiper-pagination{
-  bottom: 0px;
-}
-</style>

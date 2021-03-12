@@ -1,18 +1,19 @@
 <template>
   <div id="app">
-    <transition name="slide-left">
+    <transition name="fade" mode="out-in" appear>
     <router-view/>
 </transition>
-<Footer/>
   </div>
+  
 </template>
+
 <script>
-import Footer from './components/Footer'
+import '@/assets/scss/main.scss'
+import $ from 'jquery'
 export default {
   name: 'App',
   data () { return { index:0 } },
    components: {
-    Footer
   },
   computed: {
     user() {
@@ -55,20 +56,47 @@ export default {
             this.$router.push('/')
           }
         })
-    }
+    },
+    scroller () {
+        $(window).scroll(function(){
+        if($(window).scrollTop() > 100)
+        {
+          $(".navbar-nav").addClass("scrollTop")
+          $(".nav-link").css("color",'#fff')
+        }
+         else if(
+          $(window).scrollTop() < 40)
+          {$(".navbar-nav").removeClass("scrollTop")
+          $(".nav-link").css(
+            "color","#818181",
+            "font-weight","heavy"
+          )}
+   })
+    },
    },
   mounted () {
     this.heartbeat()
     setInterval(() => {
       this.heartbeat()
     }, 5000)
+    this.scroller()
+    
   }
 }
 </script>
-<style lang="scss">
-  @import './assets/all';
-  .slide-left-enter-active { animation: slideLeft 0.3s; } 
-  @keyframes slideLeft { from { transform: translate3d(100%, 0, 0);/*橫坐標,縱坐標,z坐標*/ visibility: visible; } 
-  to { transform: translate3d(0, 0, 0); } }
-  </style>
 
+
+
+<style lang="scss">
+  // .slide-left-enter-active { animation: slideLeft 0.4s ease-in-out; } 
+  // @keyframes slideLeft { from { transform: translate3d(0, 100%,0 );/*橫坐標,縱坐標,z坐標*/ visibility: visible; } 
+  // to { transform: translate3d(0, 0, 0); } }
+.fade-enter, .fade-leave-to{
+  opacity: 0;
+}
+.fade-enter-active,
+.fade-leave-active{
+transition: opacity 0.5s;
+  
+}
+</style>

@@ -1,10 +1,9 @@
 <template>
 <div>
     <Navbar/>
-
     <main role="main">
       <div class="container marketing">
-<h2 class="eventSection">報名表單明細</h2>
+<h2 class="eventSection text-center mb-5">報名表單明細</h2>
 
 <div class="table eventDetail container">
   <div class="row">
@@ -33,16 +32,6 @@
                 <tr >
                 <th>姓名</th>
                 <td>{{ userConfirm[0].name }}</td>
-              </tr>
-
-              <!-- <tr >
-                <th>Email</th>
-                <td>{{ userConfirm[0].email }}</td>
-              </tr> -->
-
-              <tr >
-                <th>登山保險用本名</th>
-                <td>{{ userConfirm[0].insuranceName }}</td>
               </tr>
 
               <tr >
@@ -157,8 +146,7 @@ export default {
       
       },
       userConfirm:[{
-              name: '',
-            insuranceName:'',
+            name:'',
             lineId:'',
             lineName:'',
             gender:'',
@@ -219,51 +207,3 @@ export default {
     },
 }
 </script>
-
-<style scoped>
-
-#actDetail{
-  width: 100%;
-}
-
-h2.eventSection {
-    text-align: center;
-    font-family: "EB Garamond",serif;
-    font-size: 1.8rem;
-    letter-spacing: .4em;
-    text-indent: .4em;
-    line-height: 1.4em;
-    margin: 120px 0 70px 0;
-}
-
-.eventDetail {
-    margin-top: -2.5em;
-    margin-bottom: 50px;
-}
-
-.table table th {
-    display: table-cell;
-    padding: 2.5em 5em;
-    font-size: 18px;
-    width: 60%;
-    
-}
-table {
-    display: table;
-    box-sizing: border-box;
-    text-indent: initial;
-    border-spacing: 1px;
-    border-color: grey;
-    color: #555;
-    
-}
-.table table td {
-  font-size: 18px;
-    display: block;
-    line-height: 1em;
-    word-break: break-all;
-    display: table-cell;
-    padding: 2.5em 0;
-}
-
-    </style>
