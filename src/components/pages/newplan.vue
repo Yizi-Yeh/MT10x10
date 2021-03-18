@@ -77,7 +77,7 @@
       </a>
       </div>
       <div class="new-btn-detail rounded border-0">
-      <a @click="addCart(item._id)" >
+      <a @click="joinPlan(item._id)" >
           我要報名
           </a>
         </div>
@@ -217,12 +217,20 @@ export default {
           } 
         })
       },
-
-    addCart (id) {
-       if(id){
-        store.commit('addCart', id)
-        this.$router.push('/order/'+ id)
-         } 
+    // 
+    joinPlan (id) {
+        if (this.user.id.length > 0) {
+            this.$router.push('/order/'+ id)   
+        } else {
+          this.$swal({
+                icon: 'error',
+                title: '無法報名',
+                text: '請先加入會員喔！'
+              })
+              if (this.$route.path !== '/memberReg') {
+                this.$router.push('/memberReg')
+              }}
+            
     },
     delCart (index) {
         store.commit('delCart', index)

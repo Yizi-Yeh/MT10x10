@@ -4,8 +4,8 @@
     <div class="row">
       <div class="nav-log mr-3">
           <!-- logout icon -->
-        <a class="nav-link" href="#"> <router-link to="/memberReg"><i class="fas fa-user"></i></router-link></a>
-          <a class="nav-link mr-0"  href="#" @click="logout"><i class="fas fa-sign-out-alt"></i></a>    
+        <a class="nav-link" href="#"> <router-link to="/memberReg">▸ 會員登錄</router-link></a>
+          <a class="nav-link mr-0"  href="#" @click="logout">▸ 登出</a>    
       </div>
     
     <ul class="navbar-nav d-flex flex-column align-items-center justify-content-center">
