@@ -85,7 +85,7 @@
 }
 
 .act-img:hover {
-  @include filter(0.6);
+  @include filter(0.7);
   text-decoration: none;
 }
 
@@ -149,7 +149,7 @@ a,
   &-banner {
     position: relative;
     display: block;
-    background-image: url("https://scontent.ftpe13-2.fna.fbcdn.net/v/t1.0-9/143502264_3616743085076193_3351609079308320146_n.jpg?_nc_cat=106&ccb=3&_nc_sid=825194&_nc_ohc=NF50gFBGQWMAX8NMicp&_nc_ht=scontent.ftpe13-2.fna&oh=557620908489d79c8e5d1bc379c7aaf8&oe=60530529");
+    background-image: url("https://mt10x10.files.wordpress.com/2020/07/img_3050.jpg");
     background-repeat: no-repeat;
     @include filter(0.8);
     background-attachment: fixed;
